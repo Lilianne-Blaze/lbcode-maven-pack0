@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.lbcode.maven.fragments</groupId>
+    <artifactId>mixin-revelc-formatter-simple8</artifactId>
+    <version>0.0.30</version>
+    <packaging>pom</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <distributionManagement>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <build>
+        
+        <plugins>
+            
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <!-- 2.16.0 is the latest version that still supports Java 8 -->
+                <version>2.16.0</version>
+                <configuration>
+                    <!--<skip>true</skip>-->
+                    <lineEnding>LF</lineEnding>
+                    <directories>
+                        <directory>${project.build.sourceDirectory}</directory>
+                        <directory>${project.build.sourceDirectory}/../java-templates</directory>
+                        <directory>${project.build.directory}/generated-sources</directory>
+                        <directory>${project.build.testSourceDirectory}</directory>
+                    </directories>
+                </configuration>
+                <executions>
+                    <!-- intentional, so the sources are formatted before processing
+                    and then again in case processing mangled the formatting in some weird way -->
+                    <execution>
+                        <id>format-initialize</id>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                    <execution>
+                        <id>format-process-sources</id>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            
+        </plugins>
+        
+    </build>
+</project>

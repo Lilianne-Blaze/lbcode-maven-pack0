@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.lbcode.maven.fragments</groupId>
+    <artifactId>mixin-maven-plugin-simple8</artifactId>
+    <version>0.0.30</version>
+    <packaging>pom</packaging>
+    
+    <properties>
+    </properties>
+    
+    <distributionManagement>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <build>
+        <plugins>
+        
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.12.0</version>
+                <configuration>
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>mojo-descriptor</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.sisu</groupId>
+                <artifactId>sisu-maven-plugin</artifactId>
+                <version>0.3.5</version>
+                <executions>
+                    <execution>
+                        <id>generate-index</id>
+                        <goals>
+                            <goal>main-index</goal>
+                        </goals>
+                        <configuration>
+                            <detail>true</detail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

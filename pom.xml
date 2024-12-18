@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.lbcode.maven.pack0</groupId>
+    <artifactId>lbcode-maven-pack0</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.30</version>
+
+    <properties>
+    </properties>
+    
+    <distributionManagement>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <dependencies>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.15.0</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <modules>
+        <module>mixins/mixin-git-commit-id-simple8</module>
+        <module>mixins/mixin-revelc-formatter-simple8</module>
+        <module>mixins/mixin-log-effpom</module>
+        <module>mixins/mixin-maven-plugin-simple8</module>
+    </modules>
+            
+</project>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.lbcode.maven.fragments</groupId>
+    <artifactId>mixin-git-commit-id-simple8</artifactId>
+    <version>0.0.30</version>
+    <packaging>pom</packaging>
+    
+    <properties>
+    </properties>
+    
+    <distributionManagement>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <build>
+        
+        <plugins>
+            
+            <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <version>8.0.2</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--<verbose>true</verbose>-->
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/META-INF/git/${project.groupId}/${project.artifactId}/git.properties</generateGitPropertiesFilename>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+                    <includeOnlyProperties>
+                        <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.branch$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.message.(short|full)$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.time$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.closest.tag.name$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.dirty$</includeOnlyProperty>
+                    </includeOnlyProperties>
+                </configuration>
+            </plugin>
+            
+        </plugins>
+        
+    </build>
+</project>

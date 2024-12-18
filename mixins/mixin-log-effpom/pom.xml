@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.lbcode.maven.fragments</groupId>
+    <artifactId>mixin-log-effpom</artifactId>
+    <version>0.0.30</version>
+    <packaging>pom</packaging>
+    
+    <properties>
+    </properties>
+    
+    <distributionManagement>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <id>repsy-lbcode-releases</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>repsy-lbcode-snapshots</id>
+            <url>https://repo.repsy.io/mvn/lilianne_blaze/lbcode-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <build>
+        <plugins>
+        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>3.4.0</version>
+                <executions>
+                    <execution>
+                        <id>log-effective-pom</id>
+                        <goals>
+                            <goal>effective-pom</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <output>${project.build.directory}/effective-pom-log.xml</output>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>log-effective-settings</id>
+                        <goals>
+                            <goal>effective-settings</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <output>${project.build.directory}/effective-settings-log.xml</output>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>log-system</id>
+                        <goals>
+                            <goal>system</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <output>${project.build.directory}/system-log.txt</output>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+                        
+        </plugins>
+    </build>
+</project>
